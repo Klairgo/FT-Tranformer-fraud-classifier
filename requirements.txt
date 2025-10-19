@@ -1,0 +1,14 @@
+pandas
+numpy
+torch
+scikit-learn
+shap
+matplotlib
+seaborn
+pytorch-tabnet
+imbalanced-learn 
+tab_transformer_pytorch
+ctgan
+rtdl_revisiting_models
+gdown
+requests
