@@ -7,7 +7,7 @@ This project implements fraud detection using FT-Transformer (Feature Tokenizer 
 ```
 Fraud-FT-Transformer/
 ├── data/
-│   └── creditcard.csv                              # Credit card fraud dataset
+│                                                   # Folder to store datasets
 ├── notebooks/
 │   ├── FT-Transformer_grid_search.ipynb            # Grid search optimization
 │   ├── FT-Transformer.ipynb                        # Main FT-Transformer with SHAP
