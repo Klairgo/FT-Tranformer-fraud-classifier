@@ -1,3 +1,5 @@
 fraud_detection_env/
 
 *.csv
+
+*.json
