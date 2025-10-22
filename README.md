@@ -26,33 +26,28 @@ This project uses the Credit Card Fraud Detection dataset from Kaggle:
 - **Target**: Binary classification (0: Normal, 1: Fraud)
 
 
+## Research Environment
+
+To closely reproduce the results from the research paper, use the following exact environment configuration:
+
+### Hardware Specifications
+- **GPU**: NVIDIA L4 (22.2 GB memory, Compute capability: 8.9)
+- **CUDA**: Version 12.6
+- **Platform**: Linux-6.6.105+-x86_64-with-glibc2.35
+
+### Software Versions
+- **Python**: 3.12.12 (main, Oct 10 2025, 08:52:57) [GCC 11.4.0]
+- **PyTorch**: 2.8.0+cu126
+- **NumPy**: 2.0.2
+- **Pandas**: 2.2.2
+- **scikit-learn**: 1.6.1
+- **rtdl-revisiting-models**: 0.0.2
+- **CUDA**: 12.6
+- **CUDNN**: 91002
+
+> **Note**: Using different hardware or library versions may result in slightly different results. For exact reproducibility, match the environment specifications above.
+
 ## Setup Instructions
-
-### Option 1: Google Colab (Recommended)
-
-> **_Note:_** Google Colab is the recommended environment as it provides pre-installed dependencies and CUDA support for faster training.
-
-#### Step 1: Run Data Preprocessing
-1. Open and run `preprocessing/data_preprocessing.ipynb` in Google Colab
-2. The notebook will automatically download the dataset from Google Drive
-3. If the automatic download fails, manually download the [Credit Card Fraud Detection dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/data?select=creditcard.csv) (`creditcard.csv`) and upload it to your Colab environment
-4. This will generate 3 essential files in the `/content/data/` directory:
-   - `train.csv` - Training dataset
-   - `test.csv` - Testing dataset  
-   - `preprocessing_metadata.json` - Preprocessing parameters and feature information
-
-#### Step 2: Save Preprocessed Files
-**Important**: Download and save the 3 generated files (`train.csv`, `test.csv`, `preprocessing_metadata.json`) from the Colab environment, as they will be needed for the FT-Transformer notebooks.
-
-#### Step 3: Run FT-Transformer Notebooks
-1. For each subsequent notebook (`FT-Transformer.ipynb`, `FT-Transformer_grid_search.ipynb`):
-   - Upload the 3 preprocessed files (`train.csv`, `test.csv`, `preprocessing_metadata.json`) to the Colab session
-   - Update file paths in the notebook if needed (typically in the first few cells)
-   - Run all cells
-
-### Option 2: Local Setup
-
-**The steps below are for local development setup.**
 
 ### 1. Create Virtual Environment
 
@@ -60,7 +55,7 @@ Create a Python virtual environment to isolate project dependencies:
 
 ```bash
 # Create virtual environment
-python -m venv fraud_detection_env
+python3.12 -m venv fraud_detection_env
 
 # Activate virtual environment
 # On Linux/Mac:
@@ -77,11 +72,14 @@ Install the required packages from the requirements file:
 pip install -r requirements.txt
 ```
 
+> **Note**: For CUDA-enabled PyTorch, install the appropriate version manually if needed:
+> ```bash
+> pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu126
+> ```
+
 ## Running the Project
 
-### For Local Setup Only
-
-#### 3. Data Preprocessing
+### 3. Data Preprocessing
 
 Run the preprocessing notebook to prepare the data:
 
@@ -95,7 +93,7 @@ This notebook will:
 - Split data into training and testing sets
 - Save preprocessed data for model training
 
-#### 4. FT-Transformer Implementation
+### 4. FT-Transformer Implementation
 
 Run the main FT-Transformer notebook:
 
@@ -109,7 +107,7 @@ This notebook includes:
 - SHAP explanations for model interpretability
 - Performance metrics and visualizations
 
-#### 5. Traditional Model Benchmarks
+### 5. Traditional Model Benchmarks
 
 Compare FT-Transformer performance with traditional ML models:
 
@@ -124,7 +122,7 @@ This notebook benchmarks:
 - Support Vector Machine
 - Neural Networks
 
-#### 6. Grid Search Optimization
+### 6. Grid Search Optimization
 
 Run hyperparameter optimization for FT-Transformer:
 
@@ -153,8 +151,9 @@ This notebook performs:
   - Initial dataset: `creditcard.csv` (downloaded from Kaggle)
   - Generated files: `train.csv`, `test.csv`, `preprocessing_metadata.json` (created by preprocessing notebook)
   - The FT-Transformer notebooks require all 3 generated files to run properly
-- **Environment**: Make sure to activate the virtual environment before running any notebooks (local setup only)
-- **Google Colab**: File paths may need adjustment in notebook cells when switching between Colab sessions
+- **Environment**: Make sure to activate the virtual environment before running any notebooks
+- **Reproducibility**: For exact results matching the research paper, use the specified Python 3.12.12 and library versions
+- **GPU Requirements**: NVIDIA GPU with CUDA 12.6 support recommended for training (CUDA-enabled PyTorch required)
 - **Memory**: FT-Transformer may require significant memory for large datasets; consider reducing batch size if needed
 
 ## Key Features
